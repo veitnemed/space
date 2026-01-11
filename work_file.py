@@ -1,8 +1,4 @@
-from check_line import line_is_comment
-from check_line import tag_in_line
-from check_line import is_emty_line
-
-
+import check_line as cl
 
 def working_on_code(file_name, file_name_output):
     
@@ -12,22 +8,17 @@ def working_on_code(file_name, file_name_output):
             s = line.strip()
             
             # Действие 1 - Если строка пустая не записываем - не записываем
-            if is_emty_line(s):
+            if cl.is_emty_line(s):
                 continue 
             
             # Действие 2 - Если #... - не записываем
-            if line_is_comment(s):
+            if cl.line_is_comment(s):
                 continue
             
             # Действие 3 - Если # есть в строке # берём idx
-            idx_tag, in_tag = tag_in_line(s)
+            idx_tag, in_tag = cl.tag_in_line(s)
             if in_tag and idx_tag is not None:
                 output_line = s[:idx_tag]
             
             new_file.write(output_line)
             
-                
-               
-            
-    
-    return None
