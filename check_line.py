@@ -24,6 +24,16 @@ def is_def(line):
     
         return True
     return False
+
+# Если до и после # есть кавычки то пропускаем
+def is_normal_tag(line):
+    if '#' in line:
+        idx_tag, is_tag = tag_in_line(line)
+        if_tag_1 = "'" in line[:idx_tag] and "'" in line[idx_tag+1:]
+        if_tag_2 = '"' in line[:idx_tag] and '"' in line[idx_tag+1:]
+        if if_tag_1 or if_tag_2:
+            return True
+    return False
     
         
     

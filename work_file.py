@@ -19,6 +19,9 @@ def working_on_code(file_name, file_name_output):
             if cl.line_is_comment(s):
                 continue
             
+            if cl.is_normal_tag(s):
+                continue
+            
             if cl.is_def(line):
                 new_file.write('\n')
             

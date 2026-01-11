@@ -1,16 +1,27 @@
-from check_line import line_is_comment
-from check_line import tag_in_line
-from check_line import is_emty_line
+import check_line as cl
 
 def working_on_code(file_name, file_name_output):
     with open(file_name, 'r', encoding = 'utf-8') as file, open(file_name_output, 'w',encoding='utf-8') as new_file:
+        all_strs = 0; strs = 0; comm = 0
         for line in file:
+            all_strs +=1
             output_line = line
             s = line.strip()
-            if is_emty_line(s):
+            if cl.is_emty_line(s):
                 continue 
-if line_is_comment(s):                 continue
-            idx_tag, in_tag = tag_in_line(s)
-if in_tag and idx_tag is not None:                 output_line = s[:idx_tag]
+            if cl.line_is_comment(s):
+                continue
+            if cl.check_normal_tag(s):
+                continue
+            if cl.is_def(line):
+                new_file.write('\n')
+            idx_tag, in_tag = cl.tag_in_line(s)
+            if in_tag and 
+            if in_tag and idx_tag is not None:
+                output_line = s[:idx_tag]
+                comm +=1
             new_file.write(output_line)
-    return None
+            strs += 1
+    space = all_strs - strs + comm
+    print(space,'space lines del')
+    print(comm, 'comment del' )
