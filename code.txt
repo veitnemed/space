@@ -1,44 +1,16 @@
-import check_line as cl
+import work_file as wf
+import is_not_empty_file as ef
+from print_message import print_messeage
 
-def working_on_code(file_name, file_name_output):
+file_name = 'code.txt'
+file_name_output = 'new_code.txt'
+
+
+if __name__ == '__main__':
     
-    with open(file_name, 'r', encoding = 'utf-8') as file, open(file_name_output, 'w',encoding='utf-8') as new_file:
-        all_strs = 0; strs = 0; comm = 0
-        
-        for line in file:
-            all_strs +=1
-
-            output_line = line
-            s = line.strip()
-            
-            # Действие 1 - Если строка пустая не записываем - не записываем
-            if cl.is_emty_line(s):
-                continue 
-            
-            # Действие 2 - Если #... - не записываем
-            if cl.line_is_comment(s):
-                continue
-            
-            if cl.check_normal_tag(s):
-                continue
-            
-            if cl.is_def(line):
-                new_file.write('\n')
-            
-            
-            
-            
-            # Действие 3 - Если # есть в строке # берём idx
-            idx_tag, in_tag = cl.tag_in_line(s)
-            if in_tag and 
-            if in_tag and idx_tag is not None:
-                output_line = s[:idx_tag]
-                comm +=1
-            
-            new_file.write(output_line)
-            strs += 1
-            
-    space = all_strs - strs + comm
-    print(space,'space lines del')
-    print(comm, 'comment del' )
-            
+    print_messeage('start')
+    if ef.is_not_empty_file(file_name):
+        wf.working_on_code(file_name,file_name_output)
+        print_messeage('end')
+    else:
+        print_messeage('emty')
