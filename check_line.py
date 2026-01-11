@@ -18,6 +18,14 @@ def is_emty_line(line):
     if line == '':
         return True
     return False
+
+def is_def(line):
+    if line.strip()[0:3] == 'def':
+    
+        return True
+    return False
+    
+        
     
     
     

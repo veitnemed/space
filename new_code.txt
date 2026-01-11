@@ -1,6 +1,7 @@
 from check_line import line_is_comment
 from check_line import tag_in_line
 from check_line import is_emty_line
+
 def working_on_code(file_name, file_name_output):
     with open(file_name, 'r', encoding = 'utf-8') as file, open(file_name_output, 'w',encoding='utf-8') as new_file:
         for line in file:
@@ -8,10 +9,8 @@ def working_on_code(file_name, file_name_output):
             s = line.strip()
             if is_emty_line(s):
                 continue 
-            if line_is_comment(s):
-                continue
+if line_is_comment(s):                 continue
             idx_tag, in_tag = tag_in_line(s)
-            if in_tag and idx_tag is not None:
-                output_line = s[:idx_tag]
+if in_tag and idx_tag is not None:                 output_line = s[:idx_tag]
             new_file.write(output_line)
     return None

@@ -16,12 +16,12 @@ def working_on_code(file_name, file_name_output):
                 continue 
             
             # Действие 2 - Если #... - не записываем
-            if line_is_comment(s):
+            if line_is_comment(s): #коммент1
                 continue
             
             # Действие 3 - Если # есть в строке # берём idx
             idx_tag, in_tag = tag_in_line(s)
-            if in_tag and idx_tag is not None:
+            if in_tag and idx_tag is not None: #коммент1
                 output_line = s[:idx_tag]
             
             new_file.write(output_line)

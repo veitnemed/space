@@ -3,7 +3,11 @@ import check_line as cl
 def working_on_code(file_name, file_name_output):
     
     with open(file_name, 'r', encoding = 'utf-8') as file, open(file_name_output, 'w',encoding='utf-8') as new_file:
+        all_strs = 0; strs = 0; comm = 0
+        
         for line in file:
+            all_strs +=1
+
             output_line = line
             s = line.strip()
             
@@ -15,10 +19,19 @@ def working_on_code(file_name, file_name_output):
             if cl.line_is_comment(s):
                 continue
             
+            if cl.is_def(line):
+                new_file.write('\n')
+            
             # Действие 3 - Если # есть в строке # берём idx
             idx_tag, in_tag = cl.tag_in_line(s)
             if in_tag and idx_tag is not None:
                 output_line = s[:idx_tag]
+                comm +=1
             
             new_file.write(output_line)
+            strs += 1
+            
+    space = all_strs - strs + comm
+    print(space,'space lines del')
+    print(comm, 'comment del' )
             
